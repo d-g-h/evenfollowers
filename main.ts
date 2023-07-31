@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import * as puppeteer from "puppeteer";
+import puppeteer from "puppeteer";
 
 declare function _getFollowers(): any;
 declare function _getFollows(): any;
@@ -9,7 +9,9 @@ declare function _addFollow(athlete: string): any;
 dotenv.config();
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    headless: "new",
+  });
   const page = await browser.newPage();
   await page.goto("https://strava.com/login", {
     waitUntil: "networkidle0",
