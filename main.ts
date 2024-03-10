@@ -10,7 +10,7 @@ dotenv.config();
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: "new",
+    headless: true,
   });
   const page = await browser.newPage();
   await page.goto("https://strava.com/login", {
@@ -81,9 +81,13 @@ dotenv.config();
     "I'M NOT FOLLOWING",
     followers.filter((x) => !follows.includes(x))
   );
+  console.table(followers);
+
   console.log(
     "NOT FOLLOWING ME",
     follows.filter((x) => !followers.includes(x))
   );
+  console.table(follows);
+
   await browser.close();
 })();
