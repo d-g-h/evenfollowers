@@ -10,7 +10,7 @@ dotenv.config();
 
 (async () => {
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
   });
   const page = await browser.newPage();
   await page.goto("https://strava.com/login", {
@@ -73,16 +73,18 @@ dotenv.config();
       document
         .querySelectorAll("[data-athlete-id]")
         .forEach(async function (element) {
+          debugger;
           await _addFollower(element.attributes[0].value);
         });
     });
   }
+  console.table(followers);
+  console.table(follows);
   console.log(
     "I'M NOT FOLLOWING",
     followers.filter((x) => !follows.includes(x))
   );
-  console.table(followers);
-
+  console.table(follows);
   console.log(
     "NOT FOLLOWING ME",
     follows.filter((x) => !followers.includes(x))
