@@ -24,7 +24,7 @@ dotenv.config();
   await page.keyboard.type(process.env.STRAVA_PASSWORD as string);
 
   await page.keyboard.press("Enter");
-  await page.waitForFunction("window.location.pathname == '/dashboard'")
+  await page.waitForFunction("window.location.pathname == '/dashboard'");
   await page.waitForSelector("#global-header", { visible: true });
 
   let followers = [] as string[];

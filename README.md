@@ -5,6 +5,7 @@ See .env-sample for an example
 Set variables in .env
 
 ## run
+
 ```sh
 npm install
 npm run build
