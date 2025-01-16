@@ -1,5 +1,5 @@
 import * as dotenv from "dotenv";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-extra";
 
 declare function _getFollowers(): any;
 declare function _getFollows(): any;
@@ -11,6 +11,8 @@ dotenv.config();
 (async () => {
   const browser = await puppeteer.launch({
     headless: false,
+    executablePath: process.env.EXECUTABLE_PATH,
+    userDataDir: process.env.USERDATADIR,
   });
   const page = await browser.newPage();
   await page.goto("https://strava.com/login", {
@@ -73,7 +75,6 @@ dotenv.config();
       document
         .querySelectorAll("[data-athlete-id]")
         .forEach(async function (element) {
-          debugger;
           await _addFollower(element.attributes[0].value);
         });
     });
